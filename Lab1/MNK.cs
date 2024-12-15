@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OxyPlot.Series;
+using OxyPlot;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +15,8 @@ namespace Lab1
 {
     public partial class MNK : Form, IMNKView
     {
+        double[] pointNumberX = new double[5];
+        double[] pointNumberY = new double[5];
         public MNK()
         {
             InitializeComponent();
@@ -32,7 +36,7 @@ namespace Lab1
             {
                 valuesOFX[indexOfX] = Convert.ToDouble(dataGridView1.Rows[indexOfX].Cells[0].Value);
             }
-
+            pointNumberX = valuesOFX;
             return valuesOFX;
         }
 
@@ -44,7 +48,7 @@ namespace Lab1
             {
                 valuesOFY[indexOfY] = Convert.ToDouble(dataGridView1.Rows[indexOfY].Cells[1].Value);
             }
-
+            pointNumberY = valuesOFY;
             return valuesOFY;
         }
 
@@ -71,6 +75,23 @@ namespace Lab1
                 }
 
             }
+            var series = new LineSeries();
+            series.MarkerType = MarkerType.Circle;
+            series.Color = OxyColors.Violet;
+            series.MarkerSize = 5;
+            var points = new List<DataPoint>();
+            for (int outputIndex = 0; outputIndex < pointNumberX.Length; outputIndex++) 
+            {
+                points.Add(new DataPoint(pointNumberX[outputIndex], pointNumberY[outputIndex]));
+                points.Add(new DataPoint(double.NaN, double.NaN));
+            }
+
+
+            series.ItemsSource = points;
+            
+            plotView1.Model = plotModel;
+            plotModel.Series.Add(series);
+            plotView1.Model = plotModel;
             MessageBox.Show(resultString, "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 

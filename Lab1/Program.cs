@@ -1576,22 +1576,27 @@ namespace Lab1
             PlotModel plotModel = new PlotModel { Title = "График" };
             if (IsLinear)
             {
-                result = LinearMNK(inputX, inputY);
+                var output = LinearMNK(inputX, inputY);
+                result = output.Item1;
+                plotModel = CreateGraph(5, 5, 5, output.Item2);
             }
             else 
             {
-                result = NotLinearMNK(inputX, inputY);
+                var output = NotLinearMNK(inputX, inputY);
+                result = output.Item1;
+                plotModel = CreateGraph(5, 5, 5, output.Item2);
             }
             return (result, plotModel);
         }
 
-        private double[] LinearMNK(double[] inputX, double[] inputY) 
+        private (double[], string) LinearMNK(double[] inputX, double[] inputY) 
         {
             double[] result = new double[inputX.Length];
             double SummOfX = 0;
             double SummOfY = 0;
             double SummOfPowX = 0;
             double SummOfXAndY = 0;
+            string expression;
             double[] PowX = new double[inputX.Length];
             double[] XAndY = new double[inputX.Length];
             foreach (double numberOfX in inputX) 
@@ -1617,12 +1622,13 @@ namespace Lab1
             double[] vector = new double[3];
             vector[0] = SummOfXAndY;
             vector[1] = SummOfY;
-            result = JordanoGaussMethod(matrix, vector); 
+            result = JordanoGaussMethod(matrix, vector);
+            expression = result[0].ToString() +"*x +" + result[1].ToString();
             
-            return result;
+            return (result, expression);
         }
 
-        private double[] NotLinearMNK(double[] inputX, double[] inputY)
+        private (double[], string) NotLinearMNK(double[] inputX, double[] inputY)
         {
             double[] result = new double[inputX.Length];
             double SummOfX = 0;
@@ -1637,6 +1643,7 @@ namespace Lab1
             double[] QuadroPowX = new double[inputX.Length];
             double[] XAndY = new double[inputX.Length];
             double[] PowXAndY = new double[inputX.Length];
+            string expression;
             foreach (double numberOfX in inputX)
             {
                 SummOfX += numberOfX;
@@ -1673,8 +1680,8 @@ namespace Lab1
             vector[1] = SummOfXAndY;
             vector[2] = SummOfY;
             result = JordanoGaussMethod(matrix, vector);
-
-            return result;
+            expression = result[0].ToString() + "*x^2 +" + result[1].ToString() + "*x +" + result[2].ToString();
+            return (result, expression);
         }
     }
 
