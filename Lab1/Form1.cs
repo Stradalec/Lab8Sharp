@@ -98,5 +98,11 @@ namespace Lab1
             SystemLinearAlgebraicEquations slau = new SystemLinearAlgebraicEquations();
             slau.Show();
         }
+
+        private void MNK_Click(object sender, EventArgs e)
+        {
+            MNK mnk = new MNK();
+            mnk.Show();
+        }
     }
 }

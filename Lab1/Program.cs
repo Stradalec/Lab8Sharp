@@ -25,6 +25,7 @@ using System.Windows.Media.Media3D;
 using ICSharpCode.SharpZipLib.Core;
 using System.Diagnostics.Metrics;
 using Org.BouncyCastle.Asn1.Cmp;
+using System.Windows.Media.Converters;
 
 
 namespace Lab1
@@ -127,6 +128,14 @@ namespace Lab1
         event EventHandler<EventArgs> StartCramer;
     }
 
+    interface IMNKView 
+    {
+        double[] GetXValue();
+        double[] GetYValue();
+        bool IsLinear();
+        void ShowResult(double[] result, PlotModel plotModel);
+        event EventHandler<EventArgs> Calculate;
+    }
     // Модель. Основная часть работы программы происходит здесь
     class Model
     {
@@ -1560,6 +1569,58 @@ namespace Lab1
 
             return tempMatrix;
         }
+
+        public (double[], PlotModel plotModel) SolveMNK(double[] inputX, double[] inputY, bool IsLinear) 
+        {
+            double[] result = new double[inputX.Length];
+            PlotModel plotModel = new PlotModel { Title = "График" };
+            if (IsLinear)
+            {
+                result = LinearMNK(inputX, inputY);
+            }
+            else 
+            {
+
+            }
+            return (result, plotModel);
+        }
+
+        private double[] LinearMNK(double[] inputX, double[] inputY) 
+        {
+            double[] result = new double[inputX.Length];
+            double SummOfX = 0;
+            double SummOfY = 0;
+            double SummOfPowX = 0;
+            double SummOfXAndY = 0;
+            double[] PowX = new double[inputX.Length];
+            double[] XAndY = new double[inputX.Length];
+            foreach (double numberOfX in inputX) 
+            {
+                SummOfX += numberOfX;
+            }
+            foreach (double numberOfY in inputY)
+            {
+                SummOfY += numberOfY;
+            }
+            for (int inputIndex = 0; inputIndex < inputX.Length; ++inputIndex) 
+            {
+                PowX[inputIndex] = inputX[inputIndex] * inputX[inputIndex];
+                SummOfPowX += PowX[inputIndex];
+                XAndY[inputIndex] = inputX[inputIndex] * inputY[inputIndex];
+                SummOfXAndY += XAndY[inputIndex];
+            }
+            double[,] matrix = new double[2, 2];
+            matrix[0,0] = SummOfPowX;
+            matrix[0, 1] = SummOfX;
+            matrix[1, 0] = SummOfX;
+            matrix[1, 1] = inputX.Length;
+            double[] vector = new double[3];
+            vector[0] = SummOfXAndY;
+            vector[1] = SummOfY;
+            result = JordanoGaussMethod(matrix, vector); 
+            
+            return result;
+        }
     }
 
 
@@ -1570,6 +1631,7 @@ namespace Lab1
         private ISortView sortView;
         private IIntegralView integralView;
         private IAlgebraicView algebraicView;
+        private IMNKView MNKView;
         private Model model;
 
         public Presenter(IView inputView)
@@ -1613,6 +1675,19 @@ namespace Lab1
             algebraicView.StartCramer += new EventHandler<EventArgs>(CalculateCramer);
         }
 
+        public Presenter(IMNKView inputView) 
+        {
+            MNKView = inputView;
+            model = new Model();
+
+            MNKView.Calculate += new EventHandler<EventArgs>(SolveMNK);
+        }
+
+        private void SolveMNK(object sender, EventArgs inputEvent) 
+        {
+            var output = model.SolveMNK(MNKView.GetXValue(), MNKView.GetYValue(), MNKView.IsLinear());
+            MNKView.ShowResult(output.Item1, output.Item2);
+        }
         private void CalculateGauss(object sender, EventArgs inputEvent) 
         {
             var output = model.GaussMethod(algebraicView.GetMatrix(), algebraicView.GetVector());

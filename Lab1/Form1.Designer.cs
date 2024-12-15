@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             dichotomyButton = new System.Windows.Forms.Button();
             tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            richTextBox7 = new System.Windows.Forms.RichTextBox();
+            pictureBox7 = new System.Windows.Forms.PictureBox();
             richTextBox6 = new System.Windows.Forms.RichTextBox();
             pictureBox6 = new System.Windows.Forms.PictureBox();
             pictureBox5 = new System.Windows.Forms.PictureBox();
@@ -52,16 +54,18 @@
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             button1 = new System.Windows.Forms.Button();
-            pictureBox7 = new System.Windows.Forms.PictureBox();
-            richTextBox7 = new System.Windows.Forms.RichTextBox();
+            pictureBox8 = new System.Windows.Forms.PictureBox();
+            richTextBox8 = new System.Windows.Forms.RichTextBox();
+            MNK = new System.Windows.Forms.Button();
             tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             SuspendLayout();
             // 
             // dichotomyButton
@@ -86,6 +90,9 @@
             tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12F));
             tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68F));
             tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            tableLayoutPanel1.Controls.Add(MNK, 2, 7);
+            tableLayoutPanel1.Controls.Add(richTextBox8, 1, 7);
+            tableLayoutPanel1.Controls.Add(pictureBox8, 0, 7);
             tableLayoutPanel1.Controls.Add(richTextBox7, 1, 6);
             tableLayoutPanel1.Controls.Add(pictureBox7, 0, 6);
             tableLayoutPanel1.Controls.Add(richTextBox6, 1, 5);
@@ -122,6 +129,26 @@
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             tableLayoutPanel1.Size = new System.Drawing.Size(1017, 498);
             tableLayoutPanel1.TabIndex = 1;
+            // 
+            // richTextBox7
+            // 
+            richTextBox7.Location = new System.Drawing.Point(128, 377);
+            richTextBox7.Name = "richTextBox7";
+            richTextBox7.ReadOnly = true;
+            richTextBox7.Size = new System.Drawing.Size(667, 46);
+            richTextBox7.TabIndex = 20;
+            richTextBox7.Text = "СЛАУ\nРешение систем линейных алгебраических уравнений.\nДоступны три метода: метод Гаусса, метод Гаусса-Жордано и метод Крамера\n\n\n\n\n\n\n\n";
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom;
+            pictureBox7.Image = (System.Drawing.Image)resources.GetObject("pictureBox7.Image");
+            pictureBox7.Location = new System.Drawing.Point(7, 377);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new System.Drawing.Size(110, 54);
+            pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            pictureBox7.TabIndex = 19;
+            pictureBox7.TabStop = false;
             // 
             // richTextBox6
             // 
@@ -352,25 +379,38 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // pictureBox7
+            // pictureBox8
             // 
-            pictureBox7.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom;
-            pictureBox7.Image = (System.Drawing.Image)resources.GetObject("pictureBox7.Image");
-            pictureBox7.Location = new System.Drawing.Point(7, 377);
-            pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new System.Drawing.Size(110, 54);
-            pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            pictureBox7.TabIndex = 19;
-            pictureBox7.TabStop = false;
+            pictureBox8.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom;
+            pictureBox8.Image = (System.Drawing.Image)resources.GetObject("pictureBox8.Image");
+            pictureBox8.Location = new System.Drawing.Point(7, 439);
+            pictureBox8.Name = "pictureBox8";
+            pictureBox8.Size = new System.Drawing.Size(110, 54);
+            pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            pictureBox8.TabIndex = 21;
+            pictureBox8.TabStop = false;
             // 
-            // richTextBox7
+            // richTextBox8
             // 
-            richTextBox7.Location = new System.Drawing.Point(128, 377);
-            richTextBox7.Name = "richTextBox7";
-            richTextBox7.ReadOnly = true;
-            richTextBox7.Size = new System.Drawing.Size(667, 46);
-            richTextBox7.TabIndex = 20;
-            richTextBox7.Text = "СЛАУ\nРешение систем линейных алгебраических уравнений.\nДоступны три метода: метод Гаусса, метод Гаусса-Жордано и метод Крамера\n\n\n\n\n\n\n\n";
+            richTextBox8.Location = new System.Drawing.Point(128, 439);
+            richTextBox8.Name = "richTextBox8";
+            richTextBox8.ReadOnly = true;
+            richTextBox8.Size = new System.Drawing.Size(667, 46);
+            richTextBox8.TabIndex = 22;
+            richTextBox8.Text = "МНК\nМетод наименьших квадратов\n\n\n\n\n\n\n\n\n";
+            // 
+            // MNK
+            // 
+            MNK.AutoSize = true;
+            MNK.Location = new System.Drawing.Point(817, 439);
+            MNK.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            MNK.Name = "MNK";
+            MNK.Size = new System.Drawing.Size(192, 54);
+            MNK.TabIndex = 23;
+            MNK.Text = "Метод наименьших квадратов";
+            MNK.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            MNK.UseVisualStyleBackColor = true;
+            MNK.Click += MNK_Click;
             // 
             // MainForm
             // 
@@ -389,13 +429,14 @@
             Text = "Приложение";
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -427,6 +468,9 @@
         private System.Windows.Forms.Button SLAU;
         private System.Windows.Forms.RichTextBox richTextBox7;
         private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.Button MNK;
+        private System.Windows.Forms.RichTextBox richTextBox8;
+        private System.Windows.Forms.PictureBox pictureBox8;
     }
 }
 
