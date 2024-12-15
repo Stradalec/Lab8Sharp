@@ -1580,7 +1580,7 @@ namespace Lab1
             }
             else 
             {
-
+                result = NotLinearMNK(inputX, inputY);
             }
             return (result, plotModel);
         }
@@ -1619,6 +1619,61 @@ namespace Lab1
             vector[1] = SummOfY;
             result = JordanoGaussMethod(matrix, vector); 
             
+            return result;
+        }
+
+        private double[] NotLinearMNK(double[] inputX, double[] inputY)
+        {
+            double[] result = new double[inputX.Length];
+            double SummOfX = 0;
+            double SummOfY = 0;
+            double SummOfPowX = 0;
+            double SummOfThirdPowX = 0;
+            double SummOfQuadroPowX = 0;
+            double SummOfXAndY = 0;
+            double SummOfPowXAndY = 0;
+            double[] PowX = new double[inputX.Length];
+            double[] ThirdPowX = new double[inputX.Length];
+            double[] QuadroPowX = new double[inputX.Length];
+            double[] XAndY = new double[inputX.Length];
+            double[] PowXAndY = new double[inputX.Length];
+            foreach (double numberOfX in inputX)
+            {
+                SummOfX += numberOfX;
+            }
+            foreach (double numberOfY in inputY)
+            {
+                SummOfY += numberOfY;
+            }
+            for (int inputIndex = 0; inputIndex < inputX.Length; ++inputIndex)
+            {
+                PowX[inputIndex] = inputX[inputIndex] * inputX[inputIndex];
+                SummOfPowX += PowX[inputIndex];
+                ThirdPowX[inputIndex] = inputX[inputIndex] * inputX[inputIndex] * inputX[inputIndex];
+                SummOfThirdPowX += ThirdPowX[inputIndex];
+                QuadroPowX[inputIndex] = inputX[inputIndex] * inputX[inputIndex] * inputX[inputIndex] * inputX[inputIndex];
+                SummOfQuadroPowX += QuadroPowX[inputIndex];
+                XAndY[inputIndex] = inputX[inputIndex] * inputY[inputIndex];
+                SummOfXAndY += XAndY[inputIndex];
+                PowXAndY[inputIndex] = inputX[inputIndex]* inputX[inputIndex] * inputY[inputIndex];
+                SummOfPowXAndY += PowXAndY[inputIndex];
+            }
+            double[,] matrix = new double[3, 3];
+            matrix[0, 0] = SummOfQuadroPowX;
+            matrix[0, 1] = SummOfThirdPowX;
+            matrix[0, 2] = SummOfPowX;
+            matrix[1, 0] = SummOfThirdPowX;
+            matrix[1, 1] = SummOfPowX;
+            matrix[1, 2] = SummOfX;
+            matrix[2, 0] = SummOfPowX;
+            matrix[2, 1] = SummOfX;
+            matrix[2, 2] = inputX.Length;
+            double[] vector = new double[4];
+            vector[0] = SummOfPowXAndY;
+            vector[1] = SummOfXAndY;
+            vector[2] = SummOfY;
+            result = JordanoGaussMethod(matrix, vector);
+
             return result;
         }
     }
