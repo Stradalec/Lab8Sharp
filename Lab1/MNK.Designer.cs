@@ -37,8 +37,13 @@
             textBox1 = new System.Windows.Forms.TextBox();
             inputButton = new System.Windows.Forms.Button();
             label1 = new System.Windows.Forms.Label();
+            groupBox2 = new System.Windows.Forms.GroupBox();
+            file = new System.Windows.Forms.RadioButton();
+            hand = new System.Windows.Forms.RadioButton();
+            openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridView1
@@ -53,7 +58,7 @@
             // 
             groupBox1.Controls.Add(quadro);
             groupBox1.Controls.Add(linear);
-            groupBox1.Location = new System.Drawing.Point(75, 275);
+            groupBox1.Location = new System.Drawing.Point(75, 271);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new System.Drawing.Size(144, 100);
             groupBox1.TabIndex = 1;
@@ -84,7 +89,7 @@
             // 
             // calculate
             // 
-            calculate.Location = new System.Drawing.Point(100, 381);
+            calculate.Location = new System.Drawing.Point(100, 377);
             calculate.Name = "calculate";
             calculate.Size = new System.Drawing.Size(75, 23);
             calculate.TabIndex = 2;
@@ -106,16 +111,16 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new System.Drawing.Point(92, 197);
+            textBox1.Location = new System.Drawing.Point(177, 199);
             textBox1.Name = "textBox1";
             textBox1.Size = new System.Drawing.Size(100, 23);
             textBox1.TabIndex = 4;
             // 
             // inputButton
             // 
-            inputButton.Location = new System.Drawing.Point(93, 233);
+            inputButton.Location = new System.Drawing.Point(180, 233);
             inputButton.Name = "inputButton";
-            inputButton.Size = new System.Drawing.Size(75, 23);
+            inputButton.Size = new System.Drawing.Size(111, 23);
             inputButton.TabIndex = 5;
             inputButton.Text = "Начать ввод";
             inputButton.UseVisualStyleBackColor = true;
@@ -124,17 +129,55 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(92, 178);
+            label1.Location = new System.Drawing.Point(177, 180);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(127, 15);
             label1.TabIndex = 6;
             label1.Text = "Количество значений";
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(file);
+            groupBox2.Controls.Add(hand);
+            groupBox2.Location = new System.Drawing.Point(25, 180);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new System.Drawing.Size(146, 76);
+            groupBox2.TabIndex = 7;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Ввод:";
+            // 
+            // file
+            // 
+            file.AutoSize = true;
+            file.Location = new System.Drawing.Point(11, 45);
+            file.Name = "file";
+            file.Size = new System.Drawing.Size(77, 19);
+            file.TabIndex = 1;
+            file.TabStop = true;
+            file.Text = "Из файла";
+            file.UseVisualStyleBackColor = true;
+            // 
+            // hand
+            // 
+            hand.AutoSize = true;
+            hand.Location = new System.Drawing.Point(11, 21);
+            hand.Name = "hand";
+            hand.Size = new System.Drawing.Size(66, 19);
+            hand.TabIndex = 0;
+            hand.TabStop = true;
+            hand.Text = "Ручной";
+            hand.UseVisualStyleBackColor = true;
+            // 
+            // openFileDialog1
+            // 
+            openFileDialog1.FileName = "openFileDialog1";
             // 
             // MNK
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(800, 450);
+            Controls.Add(groupBox2);
             Controls.Add(label1);
             Controls.Add(inputButton);
             Controls.Add(textBox1);
@@ -147,6 +190,8 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -162,5 +207,9 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button inputButton;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton file;
+        private System.Windows.Forms.RadioButton hand;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

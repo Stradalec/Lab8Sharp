@@ -11,11 +11,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NPOI.SS.Formula.Functions;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
+using System.IO;
+
 
 namespace Lab1
 {
     public partial class MNK : Form, IMNKView
     {
+        private string pathToFile = "temporary";
         double[] pointNumberX = new double[5];
         double[] pointNumberY = new double[5];
         private Size formOriginalSize;
@@ -27,7 +32,9 @@ namespace Lab1
         private Rectangle recQadro;
         private Rectangle recCalculate;
         private Rectangle recGraph;
-
+        private Rectangle recGroupBox2;
+        private Rectangle recHand;
+        private Rectangle recFile;
 
         public MNK()
         {
@@ -43,7 +50,11 @@ namespace Lab1
             recQadro = new Rectangle(quadro.Location, quadro.Size);
             recCalculate = new Rectangle(calculate.Location, calculate.Size);
             recGraph = new Rectangle(plotView1.Location, plotView1.Size);
+            recGroupBox2 = new Rectangle(groupBox2.Location, groupBox2.Size);
+            recHand = new Rectangle(hand.Location, hand.Size);
+            recFile = new Rectangle(file.Location, file.Size);
         }
+
         private void MNK_Resize(object sender, EventArgs e)
         {
             AutoResize(textBox1, recTextBox1);
@@ -54,6 +65,9 @@ namespace Lab1
             AutoResize(quadro, recQadro);
             AutoResize(calculate, recCalculate);
             AutoResize (plotView1, recGraph);
+            AutoResize(groupBox2 , recGroupBox2);
+            AutoResize(hand, recHand);
+            AutoResize(file, recFile);
         }
 
         private void AutoResize(Control control, Rectangle rectangle)
@@ -145,20 +159,73 @@ namespace Lab1
         public event EventHandler<EventArgs> Calculate;
         private void inputButton_Click(object sender, EventArgs inputEvent)
         {
-            int rowsCount = Convert.ToInt32(textBox1.Text); 
-
-
+            int rowsCount = Convert.ToInt32(textBox1.Text);
             dataGridView1.Columns.Clear();
             dataGridView1.Rows.Clear();
 
             dataGridView1.Columns.Add("X", "X");
             dataGridView1.Columns.Add("Y", "Y");
-
-
-            for (int inputIndex = 0; inputIndex < rowsCount; ++inputIndex)
+            if (hand.Checked) 
             {
-                dataGridView1.Rows.Add();
+                
+                for (int inputIndex = 0; inputIndex < rowsCount; ++inputIndex)
+                {
+                    dataGridView1.Rows.Add();
+                }
             }
+            else if (file.Checked)
+            {
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    pathToFile = openFileDialog1.FileName;
+                }
+                if (pathToFile != "temporary")
+                {
+                    if (pathToFile.Contains("xlsx"))
+                    {
+                        using (FileStream file = new FileStream(pathToFile, FileMode.Open, FileAccess.Read))
+                        {
+                            IWorkbook workbook = new XSSFWorkbook(file);
+                            ISheet sheet = workbook.GetSheetAt(0);
+
+                            for (int excelIndex = 0; excelIndex <= sheet.LastRowNum; ++excelIndex)
+                            {
+                                IRow currentrow = sheet.GetRow(excelIndex);
+                                if (currentrow != null)
+                                {
+                                    ICell cell = currentrow.GetCell(0);
+                                    ICell Secondcell = currentrow.GetCell(1);
+                                    if (cell != null)
+                                    {
+                                        dataGridView1.Rows.Add(cell.NumericCellValue, Secondcell.NumericCellValue);
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                    else if (pathToFile.Contains("txt"))
+                    {
+                        string text = File.ReadAllText(pathToFile);
+                        string[] lines = text.Split('\n');
+
+
+                        foreach (string line in lines)
+                        {
+                            string[] numbers = line.Split(' ');
+                            if (numbers.Length == 2)
+                            {
+                                int value1 = int.Parse(numbers[0]);
+                                int value2 = int.Parse(numbers[1]);
+                                dataGridView1.Rows.Add(value1, value2);
+                            }
+                        }
+                    }
+
+                }
+                
+            }
+            
 
 
         }
