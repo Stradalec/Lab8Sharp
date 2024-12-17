@@ -36,6 +36,7 @@
             plotView1 = new OxyPlot.WindowsForms.PlotView();
             textBox1 = new System.Windows.Forms.TextBox();
             inputButton = new System.Windows.Forms.Button();
+            label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -45,14 +46,14 @@
             dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new System.Drawing.Point(25, 12);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new System.Drawing.Size(240, 150);
+            dataGridView1.Size = new System.Drawing.Size(266, 150);
             dataGridView1.TabIndex = 0;
             // 
             // groupBox1
             // 
             groupBox1.Controls.Add(quadro);
             groupBox1.Controls.Add(linear);
-            groupBox1.Location = new System.Drawing.Point(25, 248);
+            groupBox1.Location = new System.Drawing.Point(75, 275);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new System.Drawing.Size(144, 100);
             groupBox1.TabIndex = 1;
@@ -83,7 +84,7 @@
             // 
             // calculate
             // 
-            calculate.Location = new System.Drawing.Point(50, 354);
+            calculate.Location = new System.Drawing.Point(100, 381);
             calculate.Name = "calculate";
             calculate.Size = new System.Drawing.Size(75, 23);
             calculate.TabIndex = 2;
@@ -105,14 +106,14 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new System.Drawing.Point(27, 191);
+            textBox1.Location = new System.Drawing.Point(92, 197);
             textBox1.Name = "textBox1";
             textBox1.Size = new System.Drawing.Size(100, 23);
             textBox1.TabIndex = 4;
             // 
             // inputButton
             // 
-            inputButton.Location = new System.Drawing.Point(28, 227);
+            inputButton.Location = new System.Drawing.Point(93, 233);
             inputButton.Name = "inputButton";
             inputButton.Size = new System.Drawing.Size(75, 23);
             inputButton.TabIndex = 5;
@@ -120,11 +121,21 @@
             inputButton.UseVisualStyleBackColor = true;
             inputButton.Click += inputButton_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(92, 178);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(127, 15);
+            label1.TabIndex = 6;
+            label1.Text = "Количество значений";
+            // 
             // MNK
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(800, 450);
+            Controls.Add(label1);
             Controls.Add(inputButton);
             Controls.Add(textBox1);
             Controls.Add(plotView1);
@@ -150,5 +161,6 @@
         private OxyPlot.WindowsForms.PlotView plotView1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button inputButton;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NPOI.SS.Formula.Functions;
 
 namespace Lab1
 {
@@ -17,10 +18,56 @@ namespace Lab1
     {
         double[] pointNumberX = new double[5];
         double[] pointNumberY = new double[5];
+        private Size formOriginalSize;
+        private Rectangle recTextBox1;
+        private Rectangle recLabel1;
+        private Rectangle recInputButton;
+        private Rectangle recGroupBox1;
+        private Rectangle recLinear;
+        private Rectangle recQadro;
+        private Rectangle recCalculate;
+        private Rectangle recGraph;
+
+
         public MNK()
         {
             InitializeComponent();
             Presenter presenter = new Presenter(this);
+            this.Resize += MNK_Resize;
+            formOriginalSize = this.Size;
+            recTextBox1 = new Rectangle(textBox1.Location, textBox1.Size);
+            recLabel1 = new Rectangle(label1.Location, label1.Size);
+            recInputButton = new Rectangle(inputButton.Location, inputButton.Size);
+            recGroupBox1 = new Rectangle(groupBox1.Location, groupBox1.Size);
+            recLinear = new Rectangle(linear.Location, linear.Size);
+            recQadro = new Rectangle(quadro.Location, quadro.Size);
+            recCalculate = new Rectangle(calculate.Location, calculate.Size);
+            recGraph = new Rectangle(plotView1.Location, plotView1.Size);
+        }
+        private void MNK_Resize(object sender, EventArgs e)
+        {
+            AutoResize(textBox1, recTextBox1);
+            AutoResize(label1 , recLabel1);
+            AutoResize (inputButton , recInputButton);
+            AutoResize(groupBox1, recGroupBox1);
+            AutoResize(linear, recLinear);
+            AutoResize(quadro, recQadro);
+            AutoResize(calculate, recCalculate);
+            AutoResize (plotView1, recGraph);
+        }
+
+        private void AutoResize(Control control, Rectangle rectangle)
+        {
+            double xRatio = (double)(this.Width) / (double)(formOriginalSize.Width);
+            double yRatio = (double)(this.Height) / (double)(formOriginalSize.Height);
+            int newX = (int)(rectangle.X * xRatio);
+            int newY = (int)(rectangle.Y * yRatio);
+
+            int newWidth = (int)(rectangle.Width * xRatio);
+            int newHeight = (int)(rectangle.Height * yRatio);
+
+            control.Location = new Point(newX, newY);
+            control.Size = new Size(newWidth, newHeight);
         }
 
         private void calculate_Click(object sender, EventArgs inputEvent)
