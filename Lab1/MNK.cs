@@ -14,6 +14,7 @@ using NPOI.SS.Formula.Functions;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System.IO;
+using System.Text.RegularExpressions;
 
 
 namespace Lab1
@@ -132,7 +133,19 @@ namespace Lab1
             {
                 for (int outputIndex = 0; outputIndex < result.Length; ++outputIndex)
                 {
-                    resultString += "x" + (outputIndex + 1) + " = " + Math.Round(result[outputIndex], 2).ToString() + "\n";
+                    if (outputIndex == 0)
+                    {
+                        resultString += "a" + " = " + Math.Round(result[outputIndex], 2).ToString() + "\n";
+                    }
+                    else if (outputIndex == 1)
+                    {
+                        resultString += "b" + " = " + Math.Round(result[outputIndex], 2).ToString() + "\n";
+                    }
+                    else if (outputIndex == 2) 
+                    {
+                        resultString += "c" + " = " + Math.Round(result[outputIndex], 2).ToString() + "\n";
+                    }
+                    
                 }
 
             }
@@ -159,7 +172,21 @@ namespace Lab1
         public event EventHandler<EventArgs> Calculate;
         private void inputButton_Click(object sender, EventArgs inputEvent)
         {
-            int rowsCount = Convert.ToInt32(textBox1.Text);
+            Regex regex = new Regex(@"^[\d,-]+$");
+            bool result = true;
+            bool mathces;
+            int matrixCount;
+            int rowsCount = 1;
+            if (string.IsNullOrEmpty(textBox1.Text) || (regex.IsMatch(textBox1.Text)) == false)
+            {
+                MessageBox.Show("Ошибка ввода размерности таблицы", "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                matrixCount = 1;
+            }
+            else 
+            {
+                rowsCount = Convert.ToInt32(textBox1.Text);
+            }
+            
             dataGridView1.Columns.Clear();
             dataGridView1.Rows.Clear();
 
