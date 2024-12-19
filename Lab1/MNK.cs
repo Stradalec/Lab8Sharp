@@ -15,6 +15,7 @@ using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System.IO;
 using System.Text.RegularExpressions;
+using NPOI.XSSF.Streaming.Values;
 
 
 namespace Lab1
@@ -175,8 +176,9 @@ namespace Lab1
             Regex regex = new Regex(@"^[\d,-]+$");
             bool result = true;
             bool mathces;
-            int matrixCount;
+            int matrixCount = 1;
             int rowsCount = 1;
+            int Interval = 5;
             if (string.IsNullOrEmpty(textBox1.Text) || (regex.IsMatch(textBox1.Text)) == false)
             {
                 MessageBox.Show("Ошибка ввода размерности таблицы", "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -192,9 +194,9 @@ namespace Lab1
 
             dataGridView1.Columns.Add("X", "X");
             dataGridView1.Columns.Add("Y", "Y");
-            if (hand.Checked) 
+            if (hand.Checked)
             {
-                
+
                 for (int inputIndex = 0; inputIndex < rowsCount; ++inputIndex)
                 {
                     dataGridView1.Rows.Add();
@@ -250,7 +252,24 @@ namespace Lab1
                     }
 
                 }
-                
+
+            }
+            else if (generate.Checked) 
+            {
+                Random random = new Random();
+                if (string.IsNullOrEmpty(textBox2.Text) || (regex.IsMatch(textBox2.Text)) == false)
+                {
+                    MessageBox.Show("Ошибка ввода размерности диапазона", "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    matrixCount = 1;
+                }
+                else
+                {
+                    Interval = Convert.ToInt32(textBox2.Text);
+                }
+                for (int randomIndex = 0; randomIndex < rowsCount * 2; ++randomIndex)
+                {
+                    dataGridView1.Rows.Add(random.Next(-Interval, Interval), random.Next(-Interval, Interval));
+                }
             }
             
 

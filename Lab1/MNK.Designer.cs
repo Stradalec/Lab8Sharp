@@ -38,6 +38,9 @@
             inputButton = new System.Windows.Forms.Button();
             label1 = new System.Windows.Forms.Label();
             groupBox2 = new System.Windows.Forms.GroupBox();
+            textBox2 = new System.Windows.Forms.TextBox();
+            label2 = new System.Windows.Forms.Label();
+            generate = new System.Windows.Forms.RadioButton();
             file = new System.Windows.Forms.RadioButton();
             hand = new System.Windows.Forms.RadioButton();
             openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -58,7 +61,8 @@
             // 
             groupBox1.Controls.Add(quadro);
             groupBox1.Controls.Add(linear);
-            groupBox1.Location = new System.Drawing.Point(75, 271);
+            groupBox1.Controls.Add(calculate);
+            groupBox1.Location = new System.Drawing.Point(108, 326);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new System.Drawing.Size(144, 100);
             groupBox1.TabIndex = 1;
@@ -89,7 +93,7 @@
             // 
             // calculate
             // 
-            calculate.Location = new System.Drawing.Point(100, 377);
+            calculate.Location = new System.Drawing.Point(31, 71);
             calculate.Name = "calculate";
             calculate.Size = new System.Drawing.Size(75, 23);
             calculate.TabIndex = 2;
@@ -99,10 +103,10 @@
             // 
             // plotView1
             // 
-            plotView1.Location = new System.Drawing.Point(331, 14);
+            plotView1.Location = new System.Drawing.Point(360, 14);
             plotView1.Name = "plotView1";
             plotView1.PanCursor = System.Windows.Forms.Cursors.Hand;
-            plotView1.Size = new System.Drawing.Size(457, 412);
+            plotView1.Size = new System.Drawing.Size(428, 412);
             plotView1.TabIndex = 3;
             plotView1.Text = "plotView1";
             plotView1.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
@@ -111,14 +115,14 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new System.Drawing.Point(177, 199);
+            textBox1.Location = new System.Drawing.Point(102, 52);
             textBox1.Name = "textBox1";
             textBox1.Size = new System.Drawing.Size(100, 23);
             textBox1.TabIndex = 4;
             // 
             // inputButton
             // 
-            inputButton.Location = new System.Drawing.Point(180, 233);
+            inputButton.Location = new System.Drawing.Point(121, 282);
             inputButton.Name = "inputButton";
             inputButton.Size = new System.Drawing.Size(111, 23);
             inputButton.TabIndex = 5;
@@ -129,7 +133,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(177, 180);
+            label1.Location = new System.Drawing.Point(89, 34);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(127, 15);
             label1.TabIndex = 6;
@@ -137,14 +141,46 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(textBox2);
+            groupBox2.Controls.Add(label1);
+            groupBox2.Controls.Add(label2);
+            groupBox2.Controls.Add(textBox1);
+            groupBox2.Controls.Add(generate);
             groupBox2.Controls.Add(file);
             groupBox2.Controls.Add(hand);
             groupBox2.Location = new System.Drawing.Point(25, 180);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new System.Drawing.Size(146, 76);
+            groupBox2.Size = new System.Drawing.Size(349, 96);
             groupBox2.TabIndex = 7;
             groupBox2.TabStop = false;
             groupBox2.Text = "Ввод:";
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new System.Drawing.Point(231, 53);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new System.Drawing.Size(100, 23);
+            textBox2.TabIndex = 5;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(220, 33);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(117, 15);
+            label2.TabIndex = 3;
+            label2.Text = "Границы генерации";
+            // 
+            // generate
+            // 
+            generate.AutoSize = true;
+            generate.Location = new System.Drawing.Point(11, 70);
+            generate.Name = "generate";
+            generate.Size = new System.Drawing.Size(83, 19);
+            generate.TabIndex = 2;
+            generate.TabStop = true;
+            generate.Text = "Генерация";
+            generate.UseVisualStyleBackColor = true;
             // 
             // file
             // 
@@ -178,11 +214,8 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(800, 450);
             Controls.Add(groupBox2);
-            Controls.Add(label1);
             Controls.Add(inputButton);
-            Controls.Add(textBox1);
             Controls.Add(plotView1);
-            Controls.Add(calculate);
             Controls.Add(groupBox1);
             Controls.Add(dataGridView1);
             Name = "MNK";
@@ -193,7 +226,6 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -211,5 +243,8 @@
         private System.Windows.Forms.RadioButton file;
         private System.Windows.Forms.RadioButton hand;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.RadioButton generate;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label2;
     }
 }
