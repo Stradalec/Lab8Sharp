@@ -37,7 +37,9 @@ namespace Lab1
         private Rectangle recGroupBox2;
         private Rectangle recHand;
         private Rectangle recFile;
-
+        private Rectangle recLabel2;
+        private Rectangle recTextBox2;
+        private Rectangle recGenerate;
         public MNK()
         {
             InitializeComponent();
@@ -55,6 +57,9 @@ namespace Lab1
             recGroupBox2 = new Rectangle(groupBox2.Location, groupBox2.Size);
             recHand = new Rectangle(hand.Location, hand.Size);
             recFile = new Rectangle(file.Location, file.Size);
+            recLabel2 = new Rectangle(label2.Location, label2.Size);
+            recTextBox2 = new Rectangle(textBox2.Location, textBox2.Size);
+            recGenerate = new Rectangle(generate.Location, generate.Size);
         }
 
         private void MNK_Resize(object sender, EventArgs e)
@@ -70,6 +75,9 @@ namespace Lab1
             AutoResize(groupBox2 , recGroupBox2);
             AutoResize(hand, recHand);
             AutoResize(file, recFile);
+            AutoResize(label2, recLabel2);
+            AutoResize(textBox2, recTextBox2);
+            AutoResize(generate, recGenerate);
         }
 
         private void AutoResize(Control control, Rectangle rectangle)

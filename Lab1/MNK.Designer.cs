@@ -62,7 +62,7 @@
             groupBox1.Controls.Add(quadro);
             groupBox1.Controls.Add(linear);
             groupBox1.Controls.Add(calculate);
-            groupBox1.Location = new System.Drawing.Point(108, 326);
+            groupBox1.Location = new System.Drawing.Point(56, 338);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new System.Drawing.Size(144, 100);
             groupBox1.TabIndex = 1;
@@ -115,14 +115,14 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new System.Drawing.Point(102, 52);
+            textBox1.Location = new System.Drawing.Point(112, 35);
             textBox1.Name = "textBox1";
-            textBox1.Size = new System.Drawing.Size(100, 23);
+            textBox1.Size = new System.Drawing.Size(70, 23);
             textBox1.TabIndex = 4;
             // 
             // inputButton
             // 
-            inputButton.Location = new System.Drawing.Point(121, 282);
+            inputButton.Location = new System.Drawing.Point(74, 309);
             inputButton.Name = "inputButton";
             inputButton.Size = new System.Drawing.Size(111, 23);
             inputButton.TabIndex = 5;
@@ -133,11 +133,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(89, 34);
+            label1.Location = new System.Drawing.Point(99, 17);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(127, 15);
+            label1.Size = new System.Drawing.Size(101, 15);
             label1.TabIndex = 6;
-            label1.Text = "Количество значений";
+            label1.Text = "Кол-во значений";
             // 
             // groupBox2
             // 
@@ -150,26 +150,26 @@
             groupBox2.Controls.Add(hand);
             groupBox2.Location = new System.Drawing.Point(25, 180);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new System.Drawing.Size(349, 96);
+            groupBox2.Size = new System.Drawing.Size(217, 123);
             groupBox2.TabIndex = 7;
             groupBox2.TabStop = false;
             groupBox2.Text = "Ввод:";
             // 
             // textBox2
             // 
-            textBox2.Location = new System.Drawing.Point(231, 53);
+            textBox2.Location = new System.Drawing.Point(111, 82);
             textBox2.Name = "textBox2";
-            textBox2.Size = new System.Drawing.Size(100, 23);
+            textBox2.Size = new System.Drawing.Size(70, 23);
             textBox2.TabIndex = 5;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(220, 33);
+            label2.Location = new System.Drawing.Point(93, 64);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(117, 15);
+            label2.Size = new System.Drawing.Size(121, 15);
             label2.TabIndex = 3;
-            label2.Text = "Границы генерации";
+            label2.Text = "Диапазон генерации";
             // 
             // generate
             // 
