@@ -234,6 +234,7 @@
             startCalculate.TabIndex = 18;
             startCalculate.Text = "Посчитать";
             startCalculate.UseVisualStyleBackColor = true;
+            startCalculate.Click += startCalculate_Click_1;
             // 
             // dataGridView2
             // 
@@ -266,6 +267,7 @@
             button1.TabIndex = 14;
             button1.Text = "Начать ввод";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
             // 
             // SystemLinearAlgebraicEquations
             // 

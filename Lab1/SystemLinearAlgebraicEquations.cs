@@ -44,9 +44,11 @@ namespace Lab1
             recChoose = new Rectangle(Choose.Location, Choose.Size);
             recGauss = new Rectangle(Gauss.Location, Gauss.Size);
             recJordanoGauss = new Rectangle(JordanoGauss.Location, JordanoGauss.Size);
-            recCramer = new Rectangle(Cramer.Location, Cramer.Size); 
+            recCramer = new Rectangle(Cramer.Location, Cramer.Size);
             recStartCalculate = new Rectangle(startCalculate.Location, startCalculate.Size);
             recSize = new Rectangle(size.Location, size.Size);
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView2.AllowUserToAddRows = false;
         }
 
         private void SystemLinearAlgebraicEquations_Resize(object sender, EventArgs e)
@@ -79,7 +81,9 @@ namespace Lab1
         }
 
 
-        private void button1_Click(object sender, EventArgs e)
+
+
+        private void button1_Click_1(object sender, EventArgs e)
         {
             Regex regex = new Regex(@"^[\d,-]+$");
             bool result = true;
@@ -90,14 +94,14 @@ namespace Lab1
                 MessageBox.Show("Ошибка ввода размерности матрицы", "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 matrixCount = 1;
             }
-            else 
+            else
             {
                 matrixCount = Convert.ToInt32(textBox1.Text);
             }
-            
-            if (hand.Checked) 
+
+            if (hand.Checked)
             {
-                
+
                 foreach (Control control in this.Controls)
                 {
                     if (control is DataGridView)
@@ -143,7 +147,7 @@ namespace Lab1
                     dataGridView2.Rows[vectorSpawnIndex].Cells[0].Value = 0;
                 }
             }
-            if (file.Checked) 
+            if (file.Checked)
             {
                 foreach (Control control in this.Controls)
                 {
@@ -212,23 +216,67 @@ namespace Lab1
                 {
                     MessageBox.Show("Ошибка ввода пути папки", "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                
+            }
+            if (generate.Checked)
+            {
+                Random random = new Random();
+                int interval = 10;
+                if (string.IsNullOrEmpty(textBox2.Text) || (regex.IsMatch(textBox2.Text)) == false)
+                {
+                    MessageBox.Show("Ошибка ввода диапазона", "Ошибка ввода", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    interval = Convert.ToInt32(textBox2.Text);
+                }
+                for (int mainColumnIndex = 0; mainColumnIndex < matrixCount; ++mainColumnIndex)
+                {
+                    dataGridView1.Columns.Add("col" + mainColumnIndex.ToString(), "X [" + (mainColumnIndex + 1).ToString() + "]");
+                }
+
+                // Добавить строки в таблицу для матрицы
+                for (int mainRowIndex = 0; mainRowIndex < matrixCount; ++mainRowIndex)
+                {
+                    dataGridView1.Rows.Add();
+                }
+
+                // Заспавнить значения в таблице для матрицы
+                for (int spawnZeroIndex = 0; spawnZeroIndex < matrixCount; ++spawnZeroIndex)
+                {
+                    for (int ZeroIndex = 0; ZeroIndex < matrixCount; ++ZeroIndex)
+                    {
+                        dataGridView1.Rows[spawnZeroIndex].Cells[ZeroIndex].Value = random.Next(-interval, interval);
+                    }
+                }
+                dataGridView2.Columns.Add("col1", "X");
+
+                // Добавить строки в таблицу для вектора-столбца
+                for (int vectorIndex = 0; vectorIndex < matrixCount; ++vectorIndex)
+                {
+                    dataGridView2.Rows.Add();
+                }
+
+                // Заспавнить значения в таблице для вектора-столбца
+                for (int vectorSpawnIndex = 0; vectorSpawnIndex < matrixCount; ++vectorSpawnIndex)
+                {
+                    dataGridView2.Rows[vectorSpawnIndex].Cells[0].Value = random.Next(-interval, interval);
+                }
             }
 
 
         }
 
-        private void startCalculate_Click(object sender, EventArgs inputEvent)
+        private void startCalculate_Click_1(object sender, EventArgs inputEvent)
         {
-            if (Gauss.Checked) 
+            if (Gauss.Checked)
             {
                 StartGauss(sender, inputEvent);
             }
-            if (JordanoGauss.Checked) 
+            if (JordanoGauss.Checked)
             {
                 StartJordanoGauss(sender, inputEvent);
             }
-            if (Cramer.Checked) 
+            if (Cramer.Checked)
             {
                 StartCramer(sender, inputEvent);
             }
@@ -240,8 +288,8 @@ namespace Lab1
 
         double[,] IAlgebraicView.GetMatrix()
         {
-            double[,] matrix = new double[dataGridView1.Rows.Count - 1, dataGridView1.Columns.Count];
-            for (int rowIndex = 0; rowIndex < dataGridView1.Rows.Count - 1; ++rowIndex)
+            double[,] matrix = new double[dataGridView1.Rows.Count, dataGridView1.Columns.Count];
+            for (int rowIndex = 0; rowIndex < dataGridView1.Rows.Count; ++rowIndex)
             {
                 for (int columnIndex = 0; columnIndex < dataGridView1.Columns.Count; ++columnIndex)
                 {
@@ -253,26 +301,37 @@ namespace Lab1
 
         double[] IAlgebraicView.GetVector()
         {
-            double[] vector = new double[dataGridView2.Rows.Count - 1];
-            for (int vectorIndex = 0; vectorIndex < dataGridView2.Rows.Count - 1; ++vectorIndex)
+            double[] vector = new double[dataGridView2.Rows.Count];
+            for (int vectorIndex = 0; vectorIndex < dataGridView2.Rows.Count; ++vectorIndex)
             {
                 vector[vectorIndex] = Convert.ToDouble(dataGridView2.Rows[vectorIndex].Cells[0].Value);
             }
             return vector;
         }
 
-        void IAlgebraicView.ShowResult(double[] result)
+        void IAlgebraicView.ShowResult(double[] result, int Method)
         {
             string resultString = "";
-            if (result != null) 
+            if (result != null)
             {
-                for (int outputIndex = 0; outputIndex < result.Length; ++outputIndex) 
+                for (int outputIndex = 0; outputIndex < result.Length; ++outputIndex)
                 {
                     resultString += "x" + (outputIndex + 1) + " = " + Math.Round(result[outputIndex], 2).ToString() + "\n";
                 }
-                
+
             }
-            MessageBox.Show(resultString, "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (Method == 1)
+            {
+                richTextBox1.Text = resultString;
+            }
+            if (Method == 2)
+            {
+                richTextBox2.Text = resultString;
+            }
+            if (Method == 3)
+            {
+                richTextBox3.Text = resultString;
+            }
         }
     }
 }
