@@ -29,6 +29,16 @@ namespace Lab1
         private Rectangle recCramer;
         private Rectangle recStartCalculate;
         private Rectangle recSize;
+        private Rectangle recLabel1;
+        private Rectangle recLabel2;
+        private Rectangle recLabel3;
+        private Rectangle recLabel4;
+        private Rectangle recGenerate;
+        private Rectangle recTextBox2;
+        private Rectangle recRichTextBox1;
+        private Rectangle recRichTextBox2;
+        private Rectangle recRichTextBox3;
+
 
         public SystemLinearAlgebraicEquations()
         {
@@ -47,6 +57,16 @@ namespace Lab1
             recCramer = new Rectangle(Cramer.Location, Cramer.Size);
             recStartCalculate = new Rectangle(startCalculate.Location, startCalculate.Size);
             recSize = new Rectangle(size.Location, size.Size);
+            recLabel1 = new Rectangle(label1.Location, label1.Size);
+            recLabel2 = new Rectangle(label2.Location, label2.Size);
+            recLabel3 = new Rectangle(label3.Location, label3.Size);
+            recLabel4 = new Rectangle(label4.Location, label4.Size);
+            recGenerate = new Rectangle(generate.Location, generate.Size);
+            recTextBox2 = new Rectangle(textBox2.Location, textBox2.Size);
+            recRichTextBox1 = new Rectangle(richTextBox1.Location, richTextBox1.Size);
+            recRichTextBox2 = new Rectangle(richTextBox2.Location, richTextBox2.Size);
+            recRichTextBox3 = new Rectangle(richTextBox3.Location, richTextBox3.Size);
+
             dataGridView1.AllowUserToAddRows = false;
             dataGridView2.AllowUserToAddRows = false;
         }
@@ -64,6 +84,15 @@ namespace Lab1
             AutoResize(Cramer, recCramer);
             AutoResize(startCalculate, recStartCalculate);
             AutoResize(size, recSize);
+            AutoResize(label1, recLabel1);
+            AutoResize(label2, recLabel2);
+            AutoResize(label3, recLabel3);
+            AutoResize(label4, recLabel4);
+            AutoResize(generate, recGenerate);
+            AutoResize(textBox2, recTextBox2);
+            AutoResize(richTextBox1, recRichTextBox1);
+            AutoResize(richTextBox2, recRichTextBox2);
+            AutoResize(richTextBox3, recRichTextBox3);
         }
 
         private void AutoResize(Control control, Rectangle rectangle)
