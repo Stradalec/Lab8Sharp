@@ -527,9 +527,6 @@ namespace Lab1
                 expression = context.CompileGeneric<double>(inputFunction);
                 double valueOfUpperX = expression.Evaluate();
 
-                context.Variables["x"] = descentX;
-                double innerValueOfFunction = expression.Evaluate();
-
                 switch (inputChoice)
                 {
                     case 2:
@@ -556,19 +553,12 @@ namespace Lab1
                         break;
                 }
 
-
                 startX = currentX;
-                double leftDerivative = NumericalDerivative(context, expression, currentX - step, step);
-                double rightDerivative = NumericalDerivative(context, expression, currentX + step, step);
-                if ((Math.Abs(valueOfLowerX - valueOfFunction) < epsilon || Math.Abs(valueOfUpperX - valueOfFunction) < epsilon) && (leftDerivative * rightDerivative < 0))
-                {
-                    result = currentX;
-                    context.Variables["x"] = result;
-                    functionResult = expression.Evaluate();
-                    break;
-                }
-
             }
+
+            result = startX;
+            context.Variables["x"] = result;
+            functionResult = expression.Evaluate();
             return (result, functionResult);
         }
 
