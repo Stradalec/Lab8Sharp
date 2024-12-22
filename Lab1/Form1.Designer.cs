@@ -31,6 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             dichotomyButton = new System.Windows.Forms.Button();
             tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            MNK = new System.Windows.Forms.Button();
+            richTextBox8 = new System.Windows.Forms.RichTextBox();
+            pictureBox8 = new System.Windows.Forms.PictureBox();
             richTextBox7 = new System.Windows.Forms.RichTextBox();
             pictureBox7 = new System.Windows.Forms.PictureBox();
             richTextBox6 = new System.Windows.Forms.RichTextBox();
@@ -54,10 +57,8 @@
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
             button1 = new System.Windows.Forms.Button();
-            pictureBox8 = new System.Windows.Forms.PictureBox();
-            richTextBox8 = new System.Windows.Forms.RichTextBox();
-            MNK = new System.Windows.Forms.Button();
             tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
@@ -65,7 +66,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             SuspendLayout();
             // 
             // dichotomyButton
@@ -130,6 +130,39 @@
             tableLayoutPanel1.Size = new System.Drawing.Size(1017, 498);
             tableLayoutPanel1.TabIndex = 1;
             // 
+            // MNK
+            // 
+            MNK.AutoSize = true;
+            MNK.Location = new System.Drawing.Point(817, 439);
+            MNK.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            MNK.Name = "MNK";
+            MNK.Size = new System.Drawing.Size(192, 54);
+            MNK.TabIndex = 23;
+            MNK.Text = "Метод наименьших квадратов";
+            MNK.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            MNK.UseVisualStyleBackColor = true;
+            MNK.Click += MNK_Click;
+            // 
+            // richTextBox8
+            // 
+            richTextBox8.Location = new System.Drawing.Point(128, 439);
+            richTextBox8.Name = "richTextBox8";
+            richTextBox8.ReadOnly = true;
+            richTextBox8.Size = new System.Drawing.Size(667, 46);
+            richTextBox8.TabIndex = 22;
+            richTextBox8.Text = "МНК\nМетод наименьших квадратов\nИспользуется для прогнозирования\n\n\n\n\n\n\n\n\n";
+            // 
+            // pictureBox8
+            // 
+            pictureBox8.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom;
+            pictureBox8.Image = (System.Drawing.Image)resources.GetObject("pictureBox8.Image");
+            pictureBox8.Location = new System.Drawing.Point(7, 439);
+            pictureBox8.Name = "pictureBox8";
+            pictureBox8.Size = new System.Drawing.Size(110, 54);
+            pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            pictureBox8.TabIndex = 21;
+            pictureBox8.TabStop = false;
+            // 
             // richTextBox7
             // 
             richTextBox7.Location = new System.Drawing.Point(128, 377);
@@ -157,7 +190,7 @@
             richTextBox6.ReadOnly = true;
             richTextBox6.Size = new System.Drawing.Size(667, 46);
             richTextBox6.TabIndex = 17;
-            richTextBox6.Text = "Расчёт интеграла.\nРасчёт интеграла различнейшими способами.\n\n\n\n\n\n\n\n\nКто вообще это читает?";
+            richTextBox6.Text = "Расчёт интеграла.\nВ этой программе существует 3 вида расчёта подинтегральной площади:\nМетодом левых прямоугольников\nМетодом трапеций\nМетодом Симпсона\n\n\n\n\n\n\n\n\n";
             // 
             // pictureBox6
             // 
@@ -379,39 +412,6 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // pictureBox8
-            // 
-            pictureBox8.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom;
-            pictureBox8.Image = (System.Drawing.Image)resources.GetObject("pictureBox8.Image");
-            pictureBox8.Location = new System.Drawing.Point(7, 439);
-            pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new System.Drawing.Size(110, 54);
-            pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            pictureBox8.TabIndex = 21;
-            pictureBox8.TabStop = false;
-            // 
-            // richTextBox8
-            // 
-            richTextBox8.Location = new System.Drawing.Point(128, 439);
-            richTextBox8.Name = "richTextBox8";
-            richTextBox8.ReadOnly = true;
-            richTextBox8.Size = new System.Drawing.Size(667, 46);
-            richTextBox8.TabIndex = 22;
-            richTextBox8.Text = "МНК\nМетод наименьших квадратов\n\n\n\n\n\n\n\n\n";
-            // 
-            // MNK
-            // 
-            MNK.AutoSize = true;
-            MNK.Location = new System.Drawing.Point(817, 439);
-            MNK.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            MNK.Name = "MNK";
-            MNK.Size = new System.Drawing.Size(192, 54);
-            MNK.TabIndex = 23;
-            MNK.Text = "Метод наименьших квадратов";
-            MNK.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            MNK.UseVisualStyleBackColor = true;
-            MNK.Click += MNK_Click;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -429,6 +429,7 @@
             Text = "Приложение";
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
@@ -436,7 +437,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
