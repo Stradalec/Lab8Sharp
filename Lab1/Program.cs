@@ -115,7 +115,7 @@ namespace Lab1
         event EventHandler<EventArgs> ReverseMode;
     }
 
-    interface IAlgebraicView 
+    interface IAlgebraicView
     {
         double[,] GetMatrix();
 
@@ -128,7 +128,7 @@ namespace Lab1
         event EventHandler<EventArgs> StartCramer;
     }
 
-    interface IMNKView 
+    interface IMNKView
     {
         double[] GetXValue();
         double[] GetYValue();
@@ -1416,6 +1416,31 @@ namespace Lab1
             // Прямой ход
             for (int matrixIndex = 0; matrixIndex < matrixSize; ++matrixIndex)
             {
+                int pivotIndex = matrixIndex;
+
+                for (int checkNextRowIndex = matrixIndex + 1; checkNextRowIndex < matrixSize; checkNextRowIndex++)
+                {
+                    if (Math.Abs(matrix[checkNextRowIndex, matrixIndex]) > Math.Abs(matrix[pivotIndex, matrixIndex]))
+                    {
+                        pivotIndex = checkNextRowIndex;
+                    }
+                }
+                if (pivotIndex != matrixIndex)
+                {
+                    double[] tempRow = new double[matrixSize];
+                    for (int replaceIndex = 0; replaceIndex < matrixSize; replaceIndex++)
+                    {
+                        tempRow[replaceIndex] = matrix[matrixIndex, replaceIndex];
+                        matrix[matrixIndex, replaceIndex] = matrix[pivotIndex, replaceIndex];
+                        matrix[pivotIndex, replaceIndex] = tempRow[replaceIndex];
+                    }
+                    double tempVector = vector[matrixIndex];
+                    vector[matrixIndex] = vector[pivotIndex];
+                    vector[pivotIndex] = tempVector;
+                }
+
+
+
                 // Нормализация строки (деление на главный элемент)
                 double norm = matrix[matrixIndex, matrixIndex];
                 for (int normalisationIndex = 0; normalisationIndex < matrixSize; ++normalisationIndex)
@@ -1560,7 +1585,7 @@ namespace Lab1
             return tempMatrix;
         }
 
-        public (double[], PlotModel plotModel) SolveMNK(double[] inputX, double[] inputY, bool IsLinear) 
+        public (double[], PlotModel plotModel) SolveMNK(double[] inputX, double[] inputY, bool IsLinear)
         {
             double[] result = new double[inputX.Length];
             PlotModel plotModel = new PlotModel { Title = "График" };
@@ -1570,7 +1595,7 @@ namespace Lab1
                 result = output.Item1;
                 plotModel = CreateGraph(5, 5, 5, output.Item2);
             }
-            else 
+            else
             {
                 var output = NotLinearMNK(inputX, inputY);
                 result = output.Item1;
@@ -1579,7 +1604,7 @@ namespace Lab1
             return (result, plotModel);
         }
 
-        private (double[], string) LinearMNK(double[] inputX, double[] inputY) 
+        private (double[], string) LinearMNK(double[] inputX, double[] inputY)
         {
             double[] result = new double[inputX.Length];
             double SummOfX = 0;
@@ -1589,7 +1614,7 @@ namespace Lab1
             string expression;
             double[] PowX = new double[inputX.Length];
             double[] XAndY = new double[inputX.Length];
-            foreach (double numberOfX in inputX) 
+            foreach (double numberOfX in inputX)
             {
                 SummOfX += numberOfX;
             }
@@ -1597,7 +1622,7 @@ namespace Lab1
             {
                 SummOfY += numberOfY;
             }
-            for (int inputIndex = 0; inputIndex < inputX.Length; ++inputIndex) 
+            for (int inputIndex = 0; inputIndex < inputX.Length; ++inputIndex)
             {
                 PowX[inputIndex] = inputX[inputIndex] * inputX[inputIndex];
                 SummOfPowX += PowX[inputIndex];
@@ -1605,7 +1630,7 @@ namespace Lab1
                 SummOfXAndY += XAndY[inputIndex];
             }
             double[,] matrix = new double[2, 2];
-            matrix[0,0] = SummOfPowX;
+            matrix[0, 0] = SummOfPowX;
             matrix[0, 1] = SummOfX;
             matrix[1, 0] = SummOfX;
             matrix[1, 1] = inputX.Length;
@@ -1613,8 +1638,8 @@ namespace Lab1
             vector[0] = SummOfXAndY;
             vector[1] = SummOfY;
             result = JordanoGaussMethod(matrix, vector);
-            expression = result[0].ToString() +"*x +" + result[1].ToString();
-            
+            expression = result[0].ToString() + "*x +" + result[1].ToString();
+
             return (result, expression);
         }
 
@@ -1652,7 +1677,7 @@ namespace Lab1
                 SummOfQuadroPowX += QuadroPowX[inputIndex];
                 XAndY[inputIndex] = inputX[inputIndex] * inputY[inputIndex];
                 SummOfXAndY += XAndY[inputIndex];
-                PowXAndY[inputIndex] = inputX[inputIndex]* inputX[inputIndex] * inputY[inputIndex];
+                PowXAndY[inputIndex] = inputX[inputIndex] * inputX[inputIndex] * inputY[inputIndex];
                 SummOfPowXAndY += PowXAndY[inputIndex];
             }
             double[,] matrix = new double[3, 3];
@@ -1717,7 +1742,7 @@ namespace Lab1
             integralView.ReverseMode += new EventHandler<EventArgs>(StartReverse);
         }
 
-        public Presenter(IAlgebraicView inputView) 
+        public Presenter(IAlgebraicView inputView)
         {
             algebraicView = inputView;
             model = new Model();
@@ -1727,7 +1752,7 @@ namespace Lab1
             algebraicView.StartCramer += new EventHandler<EventArgs>(CalculateCramer);
         }
 
-        public Presenter(IMNKView inputView) 
+        public Presenter(IMNKView inputView)
         {
             MNKView = inputView;
             model = new Model();
@@ -1735,12 +1760,12 @@ namespace Lab1
             MNKView.Calculate += new EventHandler<EventArgs>(SolveMNK);
         }
 
-        private void SolveMNK(object sender, EventArgs inputEvent) 
+        private void SolveMNK(object sender, EventArgs inputEvent)
         {
             var output = model.SolveMNK(MNKView.GetXValue(), MNKView.GetYValue(), MNKView.IsLinear());
             MNKView.ShowResult(output.Item1, output.Item2);
         }
-        private void CalculateGauss(object sender, EventArgs inputEvent) 
+        private void CalculateGauss(object sender, EventArgs inputEvent)
         {
             var output = model.GaussMethod(algebraicView.GetMatrix(), algebraicView.GetVector());
             algebraicView.ShowResult(output, 1);
